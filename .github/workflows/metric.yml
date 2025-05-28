@@ -1,0 +1,17 @@
+name: Metrics
+on:
+  schedule: [{cron: "0 * * * *"}] # Every hour
+  push: {branches: ["main"]}
+  workflow_dispatch:
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.plugin.isometric.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_isometric: yes
+          plugin_isometric_sections: "activity+repositories"
