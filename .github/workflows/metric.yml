@@ -12,5 +12,6 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           filename: metrics.plugin.isometric.svg
           base: "activity"
+          use_prebuilt_image: yes
           plugin_isometric: yes
           plugin_isometric_sections: "activity+repositories"
