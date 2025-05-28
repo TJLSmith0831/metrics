@@ -1,7 +1,6 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 * * * *"}] # Every hour
-  push: {branches: ["main"]}
+  schedule: [{cron: "0 * * * *"}]
   workflow_dispatch:
 
 jobs:
@@ -10,8 +9,8 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          filename: metrics.plugin.isometric.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          base: ""
+          filename: metrics.plugin.isometric.svg
+          base: "activity"
           plugin_isometric: yes
           plugin_isometric_sections: "activity+repositories"
