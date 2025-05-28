@@ -1,12 +1,14 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 * * * *"}]
+  schedule: [{cron: "0 * * * *"}]  # Runs hourly
   workflow_dispatch:
 
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
+
     steps:
+      # 🎯 Generate Isometric Contribution Map
       - uses: lowlighter/metrics@latest
         with:
           token: ${{ secrets.METRICS_TOKEN }}
@@ -15,3 +17,12 @@ jobs:
           use_prebuilt_image: yes
           plugin_isometric: yes
           plugin_isometric_sections: "activity+repositories"
+
+      # 📅 Generate Full-Year Contribution Calendar
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          filename: metrics.plugin.isocalendar.fullyear.svg
+          base: ""
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
